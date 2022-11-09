@@ -1,0 +1,92 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: runners-metrics-exporter
+  name: runners-metrics-exporter
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: runners-metrics-exporter
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: runners-metrics-exporter
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - preference:
+              matchExpressions:
+              - key: nodeType
+                operator: In
+                values:
+                - infrastructure
+            weight: 1
+      containers:
+      - env:
+        - name: SCRAPE_TIMEOUT
+          value: "${SCRAPE_TIMEOUT}"
+        - name: TOKEN_TTL
+          value: "${TOKEN_TTL}"
+        - name: SUBSTRING_IN_VM_NAME
+          value: ${SUBSTRING_IN_VM_NAME}
+        - name: BLACKLIST_VM_NAMES
+          value: ${BLACKLIST_VM_NAMES}
+        - name: CLOUD_ID
+          valueFrom:
+            secretKeyRef:
+              key: cloud_id
+              name: runners-metrics-exporter-config
+        - name: SERVICE_ACCOUNT_ID
+          valueFrom:
+            secretKeyRef:
+              key: service_account_id
+              name: runners-metrics-exporter-config
+        - name: KEY_ID
+          valueFrom:
+            secretKeyRef:
+              key: key_id
+              name: runners-metrics-exporter-config
+        - name: DEPLOY
+          value: ${DEPLOY}
+        image: ${DOCKER_IMAGE}
+        imagePullPolicy: Always
+        name: runners-metrics-exporter
+        volumeMounts:
+        - name: private-key
+          mountPath: "/app/private_key"
+          readOnly: true
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            memory: 52Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+      imagePullSecrets:
+      - name: ${IMAGE_PULL_SECRET_NAME}
+      restartPolicy: Always
+      tolerations:
+      - effect: NoSchedule
+        key: nodeType
+        operator: Equal
+        value: infrastructure
+      volumes:
+      - name: private-key
+        secret:
+          secretName: runners-metrics-exporter-config
+          items:
+          - key: private_key
+            path: private_key

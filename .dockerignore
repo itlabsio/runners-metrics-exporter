@@ -1,0 +1,8 @@
+env
+devops
+.env
+.gitignore
+.gitlab-ci.yml
+.github
+kubernetes
+requirements.dev.txt

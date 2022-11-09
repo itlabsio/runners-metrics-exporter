@@ -1,0 +1,19 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: runners-metrics-exporter
+  name: runners-metrics-exporter
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 20s
+    path: /metrics
+    port: http
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      k8s-app: runners-metrics-exporter
