@@ -83,3 +83,4 @@ pytnon3.6 main.py
   - UPDATING
   - ERROR
   - CRASHED
+- Implement the ability to scrape exporter metrics using a token.
