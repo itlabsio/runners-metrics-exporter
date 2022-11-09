@@ -57,6 +57,7 @@ type: Opaque
 ```
 
 The deployment manifest is in **kubernetes/deployment.yaml**  
+Docker image can be found here - itlabsio/runners-metrics-exporter  
 The service manifest is in **kubernetes/service.yaml**  
 The servicemonitor manifest is in **kubernetes/servicemonitor.yaml**
 
