@@ -5,7 +5,7 @@ In our case, it is used to monitor the number of gitlab-runners for each project
 Then it issues metrics in the Prometheus format.  
 Script currently using Python 3.6.  
 
-## Содержание
+## Table of content
 
 - [Where using](#where-using)
 - [Quickstart](#quickstart)
