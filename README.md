@@ -83,4 +83,5 @@ pytnon3.6 main.py
   - UPDATING
   - ERROR
   - CRASHED
-- Implement the ability to scrape exporter metrics using a token.
+- Implement the ability to scrape exporter metrics using a token;
+- Add a variable to specify the port where metrics can be scraped.
