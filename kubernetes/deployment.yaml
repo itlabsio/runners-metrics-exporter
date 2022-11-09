@@ -33,6 +33,8 @@ spec:
             weight: 1
       containers:
       - env:
+        - name: PORT
+          value: ${PORT}
         - name: SCRAPE_TIMEOUT
           value: "${SCRAPE_TIMEOUT}"
         - name: TOKEN_TTL
@@ -66,7 +68,7 @@ spec:
           mountPath: "/app/private_key"
           readOnly: true
         ports:
-        - containerPort: 8000
+        - containerPort: ${PORT}
           name: http
           protocol: TCP
         resources:

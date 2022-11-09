@@ -27,6 +27,7 @@ TOKEN_TTL = int(os.getenv('TOKEN_TTL'))
 SUBSTRING_IN_VM_NAME = os.getenv('SUBSTRING_IN_VM_NAME')
 # List of VM names that will not be taken into account
 BLACKLIST_VM_NAMES = list(os.getenv('BLACKLIST_VM_NAMES'))
+PORT = int(os.getenv('PORT'))
 
 # Metric settings
 metric_runner_up = Gauge('runner_up', 'Runner up now', ['folder_name','folder_id'])
@@ -146,7 +147,7 @@ def get_folders_dict(bearer_token) -> dict:
 
 def main():
     """main function"""
-    start_http_server(8000)
+    start_http_server(PORT)
 
     old_time = 0
     folders_dict = {}

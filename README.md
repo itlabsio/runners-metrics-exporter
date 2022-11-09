@@ -32,7 +32,10 @@ The scheme is that runners with the docker-machine executor are registered in gi
 - **SERVICE_ACCOUNT_ID** - SA in Yandex.Cloud, which has viewer rights in all folders from which you are going to collect information;
 - **KEY_ID** - the ID of the authorized key generated for the SA that is used to obtain the IAM token;
 - **SCRAPE_TIMEOUT** - period in seconds after which the script will request the number of VMs in folders;
-- **TOKEN_TTL** - lifetime of the received IAM token in seconds. After the specified period of time, the token will be re-requested.
+- **TOKEN_TTL** - lifetime of the received IAM token in seconds. After the specified period of time, the token will be re-requested;
+- **SUBSTRING_IN_VM_NAME** - substring to search in VM names;
+- **BLACKLIST_VM_NAMES** - list of VM names that will not be taken into account;
+- **PORT** -  port where metrics can be scraped.
 
 ### Run in k8s
 
@@ -84,5 +87,4 @@ pytnon3.6 main.py
   - ERROR
   - CRASHED
 - Implement the ability to scrape exporter metrics using a token;
-- Add a variable to specify the port where metrics can be scraped;
 - Tests.
