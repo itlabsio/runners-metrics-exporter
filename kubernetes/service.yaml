@@ -5,11 +5,11 @@ metadata:
   labels:
     k8s-app: runners-metrics-exporter
   name: runners-metrics-exporter
-  namespace: monitoring
+  namespace: ${KUBE_NAMESPACE}
 spec:
   ports:
   - name: http
-    port: 8000
+    port: ${PORT}
     protocol: TCP
     targetPort: http
   selector:

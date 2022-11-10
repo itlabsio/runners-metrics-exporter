@@ -5,7 +5,7 @@ metadata:
   labels:
     app: runners-metrics-exporter
   name: runners-metrics-exporter
-  namespace: monitoring
+  namespace: ${KUBE_NAMESPACE}
 spec:
   replicas: 1
   selector:
@@ -34,7 +34,7 @@ spec:
       containers:
       - env:
         - name: PORT
-          value: ${PORT}
+          value: "${PORT}"
         - name: SCRAPE_TIMEOUT
           value: "${SCRAPE_TIMEOUT}"
         - name: TOKEN_TTL
@@ -60,7 +60,7 @@ spec:
               name: runners-metrics-exporter-config
         - name: DEPLOY
           value: ${DEPLOY}
-        image: ${DOCKER_IMAGE}
+        image: ${CI_REGISTRY_IMAGE}
         imagePullPolicy: Always
         name: runners-metrics-exporter
         volumeMounts:
