@@ -12,6 +12,7 @@ Script currently using Python 3.6.
   - [Required variables](#required-variables)
   - [Run in k8s](#run-in-k8s)
   - [Run locally](#run-locally)
+  - [Result](#result)
 - [TODO](#todo)
 
 ## Where using
@@ -73,6 +74,14 @@ pip install -r requirements.dev.txt
 # 1. Set all required variables
 # 2. Put the private_key file with the private key from SA Yandex.Cloud into the private_key directory
 pytnon3.6 main.py
+```
+
+### Result
+
+You can find your metrics by expression:
+
+```promql
+runner_up{folder_id="FOLDER_ID",folder_name="$FOLDER_NAME"}
 ```
 
 ## TODO
