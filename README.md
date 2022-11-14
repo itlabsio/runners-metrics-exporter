@@ -35,7 +35,7 @@ The scheme is that runners with the docker-machine executor are registered in gi
 - **SCRAPE_TIMEOUT** - period in seconds after which the script will request the number of VMs in folders;
 - **TOKEN_TTL** - lifetime of the received IAM token in seconds. After the specified period of time, the token will be re-requested;
 - **SUBSTRING_IN_VM_NAME** - substring to search in VM names;
-- **BLACKLIST_VM_NAMES** - list of VM names that will not be taken into account;
+- **BLACKLIST_VM_NAMES** - comma separated list of VM names that will not be taken into account. If the list has one item, you must **put a comma at the end**;
 - **PORT** -  port where metrics can be scraped.
 
 ### Run in k8s

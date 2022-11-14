@@ -25,8 +25,8 @@ SCRAPE_TIMEOUT = int(os.getenv('SCRAPE_TIMEOUT'))
 TOKEN_TTL = int(os.getenv('TOKEN_TTL'))
 # Substring to search in VM names
 SUBSTRING_IN_VM_NAME = os.getenv('SUBSTRING_IN_VM_NAME')
-# List of VM names that will not be taken into account
-BLACKLIST_VM_NAMES = list(os.getenv('BLACKLIST_VM_NAMES'))
+# Comma separated List of VM names that will not be taken into account
+BLACKLIST_VM_NAMES = list(os.getenv('BLACKLIST_VM_NAMES').split(","))
 PORT = int(os.getenv('PORT'))
 
 # Metric settings
