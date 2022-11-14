@@ -109,6 +109,7 @@ def create_runners_metrics(folder_id: Optional[str], folder_name: str, bearer_to
     if response.status_code != 200:
         logger.error("Request a list of instances in a folder %s (%s) returned %s, %s, %s",
                         folder_name, folder_id, response.status_code, response.text, response.json)
+        return
 
     instances = response.json().get('instances', None)
 
