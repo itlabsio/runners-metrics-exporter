@@ -32,3 +32,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+  trigger_pipeline:
+    name: Trigger GitLab pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run pipeline
+        run: curl -X POST --fail -F token=${{ secrets.GITLAB_TOKEN }} -F ref=github ${{ secrets.GITLAB_URL }}

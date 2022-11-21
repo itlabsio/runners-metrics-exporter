@@ -34,11 +34,11 @@ spec:
       containers:
       - env:
         - name: PORT
-          value: "${PORT}"
+          value: ${PORT}
         - name: SCRAPE_TIMEOUT
-          value: "${SCRAPE_TIMEOUT}"
+          value: ${SCRAPE_TIMEOUT}
         - name: TOKEN_TTL
-          value: "${TOKEN_TTL}"
+          value: ${TOKEN_TTL}
         - name: SUBSTRING_IN_VM_NAME
           value: ${SUBSTRING_IN_VM_NAME}
         - name: BLACKLIST_VM_NAMES
@@ -68,7 +68,7 @@ spec:
           mountPath: "/app/private_key"
           readOnly: true
         ports:
-        - containerPort: ${PORT}
+        - containerPort: ${SERVICE_PORT}
           name: http
           protocol: TCP
         resources:
