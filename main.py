@@ -17,7 +17,7 @@ CLOUD_ID = os.getenv('CLOUD_ID')
 # The service account must have the view role for all the necessary folders
 SERVICE_ACCOUNT_ID = os.getenv('SERVICE_ACCOUNT_ID')
 KEY_ID = os.getenv('KEY_ID')
-# Interval in seconds with which the script will poll
+# Interval in seconds with which script will poll
 # folders for runners
 SCRAPE_TIMEOUT = int(os.getenv('SCRAPE_TIMEOUT'))
 # Interval in seconds during which the current IAM token will be used
