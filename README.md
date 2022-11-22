@@ -71,7 +71,7 @@ python3.6 -m venv env
 source env/bin/activate
 pip install -U pip
 pip install -r requirements.dev.txt
-# 1. Set all required variables
+# 1. Set all required variables by using export VAR_NAME=VAR_VALUE
 # 2. Put the private_key file with the private key from SA Yandex.Cloud into the private_key directory
 pytnon3.6 main.py
 ```
