@@ -79,6 +79,7 @@ def make_http_get_request(url: str, payload: dict, bearer_token: str):
 
 def get_folder_id_by_folder_name(folder_name: str, bearer_token: str) -> Optional[str]:
 
+    folder_id = None
     payload = {'cloud_id': CLOUD_ID}
     response = make_http_get_request(
         f"https://resource-manager.{API_MAIN_DOMAIN}resource-manager/v1/folders",
@@ -92,8 +93,8 @@ def get_folder_id_by_folder_name(folder_name: str, bearer_token: str) -> Optiona
 
     for folders in response.json()['folders']:
         if folder_name == folders['name']:
-            return folders['id']
-    return None
+            folder_id = folders['id']
+    return folder_id
 
 def create_runners_metrics(folder_id: Optional[str], folder_name: str, bearer_token: str):
     if not folder_id:
@@ -150,12 +151,12 @@ def main():
     """main function"""
     start_http_server(PORT)
 
-    old_time = 0
+    start_time = 0
     folders_dict = {}
 
     while True:
         # Request an IAM token from Yandex.Cloud no more than once in TOKEN_TTL
-        if (time.time() - old_time) > TOKEN_TTL:
+        if (time.time() - start_time) > TOKEN_TTL:
             logger.info("Requesting an IAM token")
             try:
                 bearer_token = get_iam_token().rstrip("\n")
@@ -165,7 +166,7 @@ def main():
                 time.sleep(SCRAPE_TIMEOUT)
                 continue
             logger.info("Recieved an IAM token %s", bearer_token[-10:])
-            old_time = time.time()
+            start_time = time.time()
 
         # If the dictionary with folders is empty, then fill it
         # This usually happens on the first iteration
